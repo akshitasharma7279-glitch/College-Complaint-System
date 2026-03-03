@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            font-family: Arial, sans-serif;
+        }
+
+        .main-container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            width: 350px;
+        }
+
+        .main-container h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .options button {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+        }
+
+        .student-btn {
+            background: #007bff;
+        }
+
+        .admin-btn {
+            background: #28a745;
+        }
+
+        .status-btn {
+            background: #6f42c1;
+        }
+
+        .options button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>Complaint System</h1>
+
+        <div class="options">
+            <button class="student-btn" onclick="goStudent()">Student</button>
+            <button class="admin-btn" onclick="goAdmin()">Admin</button>
+            <button class="status-btn" onclick="goStatus()">Complaint Status</button>
+        </div>
+    </div>
+
+    <script>
+        function goStudent(){
+            window.location.href = "student.html";
+        }
+
+        function goAdmin(){
+            window.location.href = "admin.html";
+        }
+
+        function goStatus(){
+            window.location.href = "status.html";
+        }
+    </script>
+
+</body>
+</html>

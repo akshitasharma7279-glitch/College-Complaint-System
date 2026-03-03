@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complaint Status</title>
+    <link rel="stylesheet" href="style.css">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.dashboard {
+    padding: 40px;
+}
+
+.complaint-card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+}
+
+/* Different colors for status */
+.pending { background: orange; }
+.process { background: blue; }
+.resolved { background: green; }
+.hold { background: gray; }
+
+.back-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #6f42c1;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+<h1>Complaint Status</h1>
+
+<div id="complaintList"></div>
+</div>
+
+<button class="back-btn" onclick="goHome()">Back</button>
+
+<script>
+
+function goHome(){
+    window.location.href = "index.html";
+}
+
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+let complaintList = document.getElementById("complaintList");
+
+if(complaints.length === 0){
+    complaintList.innerHTML = "<p>No complaints found</p>";
+}
+
+complaints.forEach((c) => {
+
+    let statusClass = "";
+
+    if(c.status === "Pending") statusClass = "pending";
+    else if(c.status === "In Process") statusClass = "process";
+    else if(c.status === "Resolved") statusClass = "resolved";
+    else if(c.status === "On Hold") statusClass = "hold";
+
+    let card = document.createElement("div");
+    card.className = "complaint-card";
+
+    card.innerHTML = `
+        <h3>Lab: ${c.lab}</h3>
+        <p><strong>Roll:</strong> ${c.roll}</p>
+        <p><strong>Complaint:</strong> ${c.complaint}</p>
+        <p><strong>Status:</strong> 
+            <span class="status-badge ${statusClass}">
+                ${c.status}
+            </span>
+        </p>
+    `;
+
+    complaintList.appendChild(card);
+});
+
+</script>
+
+</body>
+</html>

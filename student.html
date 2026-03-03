@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Complaint</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="center-container">
+<div class="card">
+    <h2>Student Complaint Form</h2>
+
+    <form id="complaintForm">
+        <input type="text" id="lab" placeholder="Lab Number" required>
+        <input type="text" id="roll" placeholder="Roll Number" required>
+        <textarea id="query" placeholder="Enter Complaint" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="index.html" class="back-link">Go Back</a>
+</div>
+</div>
+
+<!-- JavaScript MUST be inside script tag -->
+<script>
+document.getElementById("complaintForm").addEventListener("submit", function(e){
+
+    e.preventDefault(); // stop page refresh
+
+    let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
+
+    let newComplaint = {
+        lab: document.getElementById("lab").value,
+        roll: document.getElementById("roll").value,
+        description: document.getElementById("query").value,
+        status: "Pending"
+    };
+
+    complaints.push(newComplaint);
+
+    localStorage.setItem("complaints", JSON.stringify(complaints));
+
+    alert("Complaint Submitted Successfully!");
+
+    document.getElementById("complaintForm").reset();
+});
+</script>
+
+</body>
+</html>
